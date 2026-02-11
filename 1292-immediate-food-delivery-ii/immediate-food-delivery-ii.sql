@@ -5,6 +5,6 @@ with cte as (
     row_number() over(partition by customer_id order by order_date) as order
     from delivery
 )
-select round(sum(order_type)*100.0/count(*),2) as immediate_percentage 
+select round(avg(order_type)*100.0,2) as immediate_percentage 
 from cte
 where "order" = 1
